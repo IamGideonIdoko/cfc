@@ -1,3 +1,4 @@
+pnpm prisma format
 pnpm lint:staged
 pnpm test
 
