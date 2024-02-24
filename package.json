@@ -14,7 +14,8 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "test:ci": "jest --ci --json --outputFile=jest-report.json"
+    "test:ci": "jest --ci --json --outputFile=jest-report.json",
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "next": "14.1.0",
@@ -48,5 +49,11 @@
     "tailwind": "^4.0.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
+  },
+  "engines": {
+    "npm": "please-use-pnpm",
+    "yarn": "please-use-pnpm",
+    "node": "^18.0.0",
+    "pnpm": ">=8.0.0"
   }
 }
