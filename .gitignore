@@ -42,3 +42,6 @@ prisma/docs/
 
 # eslint
 .eslintcache
+
+# jest
+jest-report.json
