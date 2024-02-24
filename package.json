@@ -23,7 +23,9 @@
     "migrate:prod": "prisma migrate deploy",
     "seed": "prisma db seed",
     "push": "prisma db push",
-    "prisma": "prisma"
+    "prisma": "prisma",
+    "db:up": "docker compose up --detach db",
+    "db:bash": "docker exec -it kantadb bash"
   },
   "dependencies": {
     "@prisma/client": "^5.10.2",

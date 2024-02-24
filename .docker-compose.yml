@@ -1,0 +1,17 @@
+version: '3.6'
+services:
+  db:
+    container_name: cfc_db
+    image: mysql:8.0.32
+    restart: always
+    environment:
+      MYSQL_DATABASE: cfc_db
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - '3307:3306' # expose mysql on port 3307 to not collide with mysql from elsewhere
+    expose:
+      - '3306'
+    volumes:
+      - cfc_db:/var/lib/mysql
+volumes:
+  cfc_db:
