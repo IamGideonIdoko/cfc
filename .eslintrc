@@ -1,0 +1,86 @@
+{
+  "parser": "@typescript-eslint/parser", // Specifies the ESLint parser
+  "extends": [
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked",
+    "plugin:react/recommended",
+    // "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended",
+    "plugin:tailwindcss/recommended",
+    "next/core-web-vitals"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018, // Allows for the parsing of modern ECMAScript features
+    "sourceType": "module", // Allows for the use of imports,
+    "project": "tsconfig.json"
+  },
+  "plugins": ["no-comments"],
+  "rules": {
+    // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+
+    // Consider removing these rule disables for more type safety in your app ✨
+    // "@typescript-eslint/no-misused-promises": "off",
+    // "@typescript-eslint/no-confusing-void-expression": "off",
+    // "@typescript-eslint/no-explicit-any": "off",
+    // "@typescript-eslint/no-floating-promises": "off",
+    // "@typescript-eslint/no-unsafe-assignment": "off",
+    // "@typescript-eslint/no-unsafe-argument": "off",
+    // "@typescript-eslint/no-unsafe-call": "off",
+    // "@typescript-eslint/no-unsafe-declaration-merging": "off",
+    // "@typescript-eslint/no-unsafe-return": "off",
+    // "@typescript-eslint/no-unsafe-member-access": "off",
+    // "@typescript-eslint/prefer-nullish-coalescing": "off",
+    // "@typescript-eslint/require-await": "off",
+    // "@typescript-eslint/restrict-plus-operands": "off"
+
+    // TailwindCSS
+    "tailwindcss/enforces-shorthand": "off",
+
+    // Jest rules
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error",
+    "no-comments/disallowComments": [
+      "error",
+      {
+        "allow": ["!", "TODO", "FIXME", "NOTE", "DEBUG"]
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "tailwindcss": {
+      "whitelist": ["scrollbarless", "form-err-msg"],
+      "callees": ["classnames", "clsx", "ctl", "twMerge"]
+    }
+  },
+  "root": true,
+  "overrides": [
+    {
+      "files": [
+        "src/__tests__/**",
+        "src/**/*.test.js",
+        "src/**/*.test.jsx",
+        "src/**/*.test.ts",
+        "src/**/*.test.tsx"
+      ],
+      "plugins": ["jest"],
+      "env": {
+        "jest/globals": true
+      },
+      "extends": ["plugin:jest/recommended", "plugin:jest/style"]
+    },
+    {
+      "files": ["src/hooks/**/*.hook.ts"],
+      "rules": {
+        "react-hooks/rules-of-hooks": "off"
+      }
+    }
+  ]
+}

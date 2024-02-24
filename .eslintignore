@@ -1,0 +1,7 @@
+.git/
+.eslintcache
+.github/
+node_modules/
+build/
+.next/
+next-env.d.ts
