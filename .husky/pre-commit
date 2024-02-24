@@ -1,4 +1,5 @@
 pnpm prisma format
+git add ./prisma/schema.prisma
 pnpm lint:staged
 pnpm test
 
