@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Work_Sans } from 'next/font/google';
 import './_styles/globals.css';
-import { ThemeProvider } from '@/app/_providers/ThemeProvider';
+import { ThemeProvider, SessionProvider } from '@/app/_providers';
+import { getServerAuthSession } from '@/server/auth';
 
 const workSans = Work_Sans({ subsets: ['latin'] });
 
@@ -10,15 +11,18 @@ export const metadata: Metadata = {
   description: 'Simple payment app',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerAuthSession();
   return (
     <html lang="en">
       <body className={workSans.className}>
-        <ThemeProvider attribute="class">{children}</ThemeProvider>
+        <SessionProvider session={session}>
+          <ThemeProvider attribute="class">{children}</ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );

@@ -8,15 +8,15 @@ import { twMerge } from 'tailwind-merge';
 const buttonStyles = (className?: string) =>
   cva(
     twMerge(
-      `flex items-center justify-center rounded-md p-4 font-medium focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-white disabled:pointer-events-none disabled:opacity-60 ${
+      `flex items-center justify-center rounded-md p-4 py-3 font-medium focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-white disabled:pointer-events-none disabled:opacity-60 ${
         className ?? ''
       }`,
     ),
     {
       variants: {
         intent: {
-          primary: 'bg-[var(--primary-color)] text-white hover:opacity-90',
-          secondary: 'bg-[var(--secondary-color)] text-white hover:opacity-90 focus:ring-gray-500',
+          primary: 'bg-[var(--pri-color)] text-white hover:opacity-90',
+          secondary: 'bg-[var(--sec-color)] text-white hover:opacity-90 focus:ring-gray-500',
           danger: 'bg-red-500 text-white focus:ring-red-500',
           none: '',
           outline: 'border',

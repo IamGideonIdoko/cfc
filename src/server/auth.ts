@@ -45,6 +45,7 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db) as Adapter,
   providers: [
     GoogleProvider({
+      id: 'google',
       clientId: appConfig.env.GOOGLE_CLIENT_ID,
       clientSecret: appConfig.env.GOOGLE_CLIENT_SECRET,
     }),
