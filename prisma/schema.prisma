@@ -59,6 +59,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   createdAt     DateTime  @default(now())
+  subAccountId  String? // Chimoney sub account ID
 }
 
 model VerificationToken {

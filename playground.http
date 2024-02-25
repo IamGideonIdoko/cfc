@@ -1,0 +1,16 @@
+# Get all sub-accounts from Chimoney
+GET {{CHIMONEY_URL}}/sub-account/list
+X-API-KEY: {{CHIMONEY_KEY}}
+
+# Get details of an existing sub-account
+GET {{CHIMONEY_URL}}/sub-account/get?id=4c7d0e96-f3e6-4d78-9089-d63d20cb293f
+X-API-KEY: {{CHIMONEY_KEY}}
+
+# Create a new sub-account
+POST {{CHIMONEY_URL}}/sub-account/create
+X-API-KEY: {{CHIMONEY_KEY}}
+Content-Type: application/json
+
+{
+  "name": "James"
+}

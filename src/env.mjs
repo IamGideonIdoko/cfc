@@ -23,6 +23,8 @@ export const env = createEnv({
     ),
     GOOGLE_CLIENT_ID: z.string(),
     GOOGLE_CLIENT_SECRET: z.string(),
+    CHIMONEY_URL: z.string(),
+    CHIMONEY_KEY: z.string(),
   },
 
   // ! Specify your client-side environment variables schema here. This way you can ensure the app
@@ -41,6 +43,8 @@ export const env = createEnv({
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    CHIMONEY_URL: process.env.CHIMONEY_URL,
+    CHIMONEY_KEY: process.env.CHIMONEY_KEY,
   },
   // ! Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
   // ! useful for Docker builds.

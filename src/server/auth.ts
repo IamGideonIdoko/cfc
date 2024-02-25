@@ -4,7 +4,40 @@ import { getServerSession, type DefaultSession, type NextAuthOptions } from 'nex
 import { type Adapter } from 'next-auth/adapters';
 import GoogleProvider from 'next-auth/providers/google';
 import appConfig from '@/app/_config';
-import { db } from '@/server/db';
+import { db } from './db';
+import { getChimoneyHeaders } from './utils';
+import type { CreateSubAccountResponse } from '@/app/_interfaces/chimoney';
+
+async function createSubAccount({ id, name }: Record<'id' | 'name', string>) {
+  'use server';
+
+  try {
+    const response = await fetch(`${appConfig.env.CHIMONEY_URL}/sub-account/create`, {
+      method: 'POST',
+      headers: {
+        ...getChimoneyHeaders(),
+      },
+      body: JSON.stringify({
+        name,
+      }),
+    });
+    if (!response.ok) throw new Error('Failed to create account');
+    const data = (await response.json()) as CreateSubAccountResponse;
+    if (data.status === 'error') throw new Error(data.error);
+    const subAccountId = data.data.id;
+    await db.user.update({
+      where: {
+        id,
+      },
+      data: {
+        subAccountId,
+      },
+    });
+    return { status: 'success' };
+  } catch (err) {
+    return { status: 'error', error: (err as Error).message };
+  }
+}
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -64,6 +97,17 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: '/',
+  },
+  events: {
+    signIn: async ({ user: { id, name }, isNewUser }) => {
+      if (isNewUser && name) {
+        const response = await createSubAccount({
+          id,
+          name,
+        });
+        console.log('Create sub account response: ', response);
+      }
+    },
   },
 };
 
