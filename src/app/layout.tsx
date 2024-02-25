@@ -3,6 +3,7 @@ import { Work_Sans } from 'next/font/google';
 import './_styles/globals.css';
 import { ThemeProvider, SessionProvider } from '@/app/_providers';
 import { getServerAuthSession } from '@/server/auth';
+import MainLayout from './_layouts/MainLayout';
 
 const workSans = Work_Sans({ subsets: ['latin'] });
 
@@ -21,7 +22,9 @@ export default async function RootLayout({
     <html lang="en">
       <body className={workSans.className}>
         <SessionProvider session={session}>
-          <ThemeProvider attribute="class">{children}</ThemeProvider>
+          <ThemeProvider attribute="class">
+            <MainLayout>{children}</MainLayout>
+          </ThemeProvider>
         </SessionProvider>
       </body>
     </html>

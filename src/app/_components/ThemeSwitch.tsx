@@ -14,7 +14,7 @@ const ThemeSwitch = () => {
   if (!mounted) return null;
 
   return (
-    <label htmlFor="toggle" className="flex cursor-pointer items-center">
+    <label htmlFor="toggle" className="fixed bottom-8 right-4 flex rotate-90 cursor-pointer items-center">
       <input
         checked={theme === 'light'}
         type="checkbox"
@@ -24,7 +24,7 @@ const ThemeSwitch = () => {
           setTheme(e.target.checked ? 'light' : 'dark');
         }}
       />
-      <div className="relative block h-8 w-16 rounded-full bg-[var(--pri-color)] p-1 before:absolute before:left-1 before:h-6 before:w-6 before:rounded-full before:bg-black before:p-1 before:transition-all before:duration-500 peer-checked:before:left-8 peer-checked:before:bg-white"></div>
+      <div className="relative block h-8 w-[3.8rem] rounded-full bg-[var(--pri-color)] p-1 before:absolute before:left-1 before:h-6 before:w-6 before:rounded-full before:bg-black before:p-1 before:transition-all before:duration-500 peer-checked:before:left-8 peer-checked:before:bg-white"></div>
     </label>
   );
 };
