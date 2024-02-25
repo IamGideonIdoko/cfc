@@ -3,14 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --pri-color: #BEEC42;
-  --sec-color: #9D9C89;
-  --foreground-rgb: 0, 0, 0;
+  --pri-color: #beec42;
+  --sec-color: #9d9c89;
+  --foreground: black;
+  --background: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  html.dark {
+    --foreground: white;
+    --background: #121212;
+  }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: white;
+  color: var(--foreground);
+  background: var(--background);
 }
 
 @layer utilities {
