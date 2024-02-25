@@ -7,6 +7,7 @@ import appConfig from '@/app/_config';
 import { db } from './db';
 import { getChimoneyHeaders } from './utils';
 import type { CreateSubAccountResponse } from '@/app/_interfaces/chimoney';
+import type { User } from '@prisma/client';
 
 async function createSubAccount({ id, name }: Record<'id' | 'name', string>) {
   'use server';
@@ -49,6 +50,7 @@ declare module 'next-auth' {
   interface Session extends DefaultSession {
     user: {
       id: string;
+      subAccountId: string | null;
       // ...other properties
       // role: UserRole;
     } & DefaultSession['user'];
@@ -67,13 +69,16 @@ declare module 'next-auth' {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-      },
-    }),
+    session: ({ session, user }) => {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: user.id,
+          subAccountId: (user as User).subAccountId,
+        },
+      };
+    },
   },
   adapter: PrismaAdapter(db) as Adapter,
   providers: [

@@ -19,6 +19,7 @@ const AuthButton = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { data: session, status } = useSession();
+  console.log('SESSION: ', session);
 
   const navigation = useMemo<{ name: string; active: boolean; link: string; icon?: ReactNode }[]>(
     () => [
