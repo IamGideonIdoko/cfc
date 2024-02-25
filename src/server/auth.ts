@@ -62,6 +62,9 @@ export const authOptions: NextAuthOptions = {
   session: {
     maxAge: 2 * 24 * 60 * 60, // Expire session in 2 days
   },
+  pages: {
+    signIn: '/',
+  },
 };
 
 /**
