@@ -1,7 +1,7 @@
-import type { IAppConfig } from '@/app/interfaces/config';
+import type { IAppConfig } from '@/app/_interfaces/config';
 import { env } from '@/env.mjs';
 
-const serverConfig: IAppConfig = {
+const appConfig: IAppConfig = {
   env: {
     ...env,
     isProd: env.NODE_ENV === 'production',
@@ -19,4 +19,4 @@ const serverConfig: IAppConfig = {
   },
 };
 
-export default serverConfig;
+export default appConfig;

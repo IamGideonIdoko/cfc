@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
-import appConfig from '@/app/config';
+import appConfig from '@/app/_config';
 
 const createPrismaClient = () =>
   new PrismaClient({

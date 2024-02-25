@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import { Work_Sans } from 'next/font/google';
-import './styles/globals.css';
-import { ThemeProvider } from '@/app/providers/ThemeProvider';
+import './_styles/globals.css';
+import { ThemeProvider } from '@/app/_providers/ThemeProvider';
 
 const workSans = Work_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'CPay',
+  title: 'CFC-Pay',
   description: 'Simple payment app',
 };
 
