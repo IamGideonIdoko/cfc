@@ -14,3 +14,12 @@ Content-Type: application/json
 {
   "name": "James"
 }
+
+# Get all transactions by account
+POST {{CHIMONEY_URL}}/accounts/transactions
+X-API-KEY: {{CHIMONEY_KEY}}
+Content-Type: application/json
+
+{
+  "subAccount": "40ecd76b-99c0-414f-9019-1c0bdbd3fe30"
+}

@@ -13,13 +13,13 @@ import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
 import { FaSignOutAlt } from 'react-icons/fa';
 import defaultAvatar from '@/app/_assets/default_avatar.png';
+import { FaChevronDown } from 'react-icons/fa6';
 
 const AuthButton = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
   const { data: session, status } = useSession();
-  console.log('SESSION: ', session);
 
   const navigation = useMemo<{ name: string; active: boolean; link: string; icon?: ReactNode }[]>(
     () => [
@@ -44,7 +44,7 @@ const AuthButton = () => {
   if (pathname === '/' || (!session && pathname !== '/'))
     return (
       <Button
-        className="bg-black dark:bg-white dark:text-black"
+        className="bg-black !text-white dark:bg-white dark:text-black"
         onClick={() =>
           session ? router.push('/dashboard') : void signIn('google', { callbackUrl: callbackUrl ?? undefined })
         }
@@ -69,15 +69,14 @@ const AuthButton = () => {
           <span className={twMerge('mr-3 hidden text-base md:inline-block')}>
             {session.user?.name?.trim().split(' ')[0] ?? 'User'}
           </span>
-          {session && (
-            <Image
-              className="h-8 w-8 rounded-full"
-              src={session.user.image ?? defaultAvatar}
-              alt=""
-              width={22}
-              height={22}
-            />
-          )}
+          <Image
+            className="h-8 w-8 rounded-full"
+            src={session.user.image ?? defaultAvatar}
+            alt=""
+            width={22}
+            height={22}
+          />
+          <FaChevronDown className="ml-3" />
         </Menu.Button>
       </div>
       <Transition

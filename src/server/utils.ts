@@ -4,3 +4,7 @@ export const getChimoneyHeaders = (): HeadersInit => ({
   'content-type': 'application/json;charset=UTF-8',
   'X-API-KEY': appConfig.env.CHIMONEY_KEY,
 });
+
+export enum CacheTag {
+  ACCOUNT_DETAILS = 'ACCOUNT_DETAILS',
+}
