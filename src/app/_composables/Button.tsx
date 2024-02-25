@@ -15,7 +15,7 @@ const buttonStyles = (className?: string) =>
     {
       variants: {
         intent: {
-          primary: 'bg-[var(--pri-color)] text-white hover:opacity-90',
+          primary: 'bg-[var(--pri-color)] text-black hover:opacity-90',
           secondary: 'bg-[var(--sec-color)] text-white hover:opacity-90 focus:ring-gray-500',
           danger: 'bg-red-500 text-white focus:ring-red-500',
           none: '',
