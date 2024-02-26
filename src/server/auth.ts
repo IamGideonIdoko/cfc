@@ -24,7 +24,7 @@ async function createSubAccount({ id, name }: Record<'id' | 'name', string>) {
     });
     if (!response.ok) throw new Error('Failed to create account');
     const data = (await response.json()) as CreateSubAccountResponse;
-    if (data.status === 'error') throw new Error(data.error);
+    if (!('status' in data && data.status === 'success')) throw new Error('error' in data ? data.error : data.message);
     const subAccountId = data.data.id;
     await db.user.update({
       where: {

@@ -1,7 +1,8 @@
 'use client';
 
+import { useCallback } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useState, type FC } from 'react';
+import { Fragment, useState } from 'react';
 import { Button } from '@/app/_composables';
 import { BsArrowUpRight } from 'react-icons/bs';
 import Logo from '@/app/_components/Logo';
@@ -12,11 +13,20 @@ import { MdPhoneEnabled } from 'react-icons/md';
 import { FaMoneyBill } from 'react-icons/fa6';
 import { FaPhoneVolume } from 'react-icons/fa';
 import { MdCardGiftcard } from 'react-icons/md';
+import WalletTransfer from './WalletTransfer';
+import EmailTransfer from './EmailTransfer';
+import BankTransfer from './BankTransfer';
 
-const SendPayment: FC = () => {
+const SendPayment = () => {
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
   const openModal = () => setIsOpen(true);
+  const [preferredMethod, setPreferredMethod] = useState<'wallet' | 'bank' | 'email' | null>(null);
+
+  const closeMethod = useCallback(() => {
+    setPreferredMethod(null);
+  }, []);
+
   return (
     <>
       <Button className="py-2" onClick={openModal}>
@@ -56,93 +66,103 @@ const SendPayment: FC = () => {
                     With C-Pay (powered by Chimoney), you can send payments to other users and non-users of this
                     platform easily!
                   </p>
-                  <label className="mt-4 block font-medium">Choose your preferred method:</label>
-                  <ul className="mt-4 space-y-4">
-                    <li>
-                      <Button
-                        intent="none"
-                        className="justify-start gap-3 bg-[#beec4225] focus:outline-[var(--pri-color)] focus:ring-0 focus:ring-offset-0"
-                        fullWidth
-                      >
-                        <span className="rounded-md bg-white p-2 dark:bg-black">
-                          <RiP2PLine />
-                        </span>
-                        <span>To Chi Wallet (P2P)</span>
-                      </Button>
-                    </li>
-                    <li>
-                      <Button
-                        intent="none"
-                        className="justify-start gap-3 bg-[#beec4225] focus:outline-[var(--pri-color)] focus:ring-0 focus:ring-offset-0"
-                        fullWidth
-                      >
-                        <span className="rounded-md bg-white p-2 dark:bg-black">
-                          <MdOutlineMarkEmailUnread />
-                        </span>
-                        <span>To Email</span>
-                      </Button>
-                    </li>
-                    <li>
-                      <Button
-                        intent="none"
-                        className="justify-start gap-3 bg-[#beec4225] focus:outline-[var(--pri-color)] focus:ring-0 focus:ring-offset-0"
-                        fullWidth
-                      >
-                        <span className="rounded-md bg-white p-2 dark:bg-black">
-                          <MdPhoneEnabled />
-                        </span>
-                        <span>To Phone Number</span>
-                      </Button>
-                    </li>
-                    <li>
-                      <Button
-                        intent="none"
-                        className="justify-start gap-3 bg-[#beec4225] focus:outline-[var(--pri-color)] focus:ring-0 focus:ring-offset-0"
-                        fullWidth
-                      >
-                        <span className="rounded-md bg-white p-2 dark:bg-black">
-                          <BsBank />
-                        </span>
-                        <span>To Bank Account</span>
-                      </Button>
-                    </li>
-                    <li>
-                      <Button
-                        intent="none"
-                        className="justify-start gap-3 bg-[#beec4225] focus:outline-[var(--pri-color)] focus:ring-0 focus:ring-offset-0"
-                        fullWidth
-                      >
-                        <span className="rounded-md bg-white p-2 dark:bg-black">
-                          <FaMoneyBill />
-                        </span>
-                        <span>To Mobile Money (Momo) Account</span>
-                      </Button>
-                    </li>
-                    <li>
-                      <Button
-                        intent="none"
-                        className="justify-start gap-3 bg-[#beec4225] focus:outline-[var(--pri-color)] focus:ring-0 focus:ring-offset-0"
-                        fullWidth
-                      >
-                        <span className="rounded-md bg-white p-2 dark:bg-black">
-                          <FaPhoneVolume />
-                        </span>
-                        <span>To Phone Number (Airtime)</span>
-                      </Button>
-                    </li>
-                    <li>
-                      <Button
-                        intent="none"
-                        className="justify-start gap-3 bg-[#beec4225] focus:outline-[var(--pri-color)] focus:ring-0 focus:ring-offset-0"
-                        fullWidth
-                      >
-                        <span className="rounded-md bg-white p-2 dark:bg-black">
-                          <MdCardGiftcard />
-                        </span>
-                        <span>To Email (Giftcards)</span>
-                      </Button>
-                    </li>
-                  </ul>
+                  {preferredMethod === null && (
+                    <>
+                      <label className="mt-4 block font-medium">Choose your preferred method:</label>
+                      <ul className="mt-4 space-y-4">
+                        <li>
+                          <Button
+                            intent="none"
+                            className="justify-start gap-3 bg-[#beec4225] focus:outline-[var(--pri-color)] focus:ring-0 focus:ring-offset-0"
+                            fullWidth
+                            onClick={() => setPreferredMethod('wallet')}
+                          >
+                            <span className="rounded-md bg-white p-2 dark:bg-black">
+                              <RiP2PLine />
+                            </span>
+                            <span>To Chi Wallet (P2P)</span>
+                          </Button>
+                        </li>
+                        <li>
+                          <Button
+                            intent="none"
+                            className="justify-start gap-3 bg-[#beec4225] focus:outline-[var(--pri-color)] focus:ring-0 focus:ring-offset-0"
+                            fullWidth
+                            onClick={() => setPreferredMethod('bank')}
+                          >
+                            <span className="rounded-md bg-white p-2 dark:bg-black">
+                              <BsBank />
+                            </span>
+                            <span>To Bank Account</span>
+                          </Button>
+                        </li>
+                        <li>
+                          <Button
+                            intent="none"
+                            className="justify-start gap-3 bg-[#beec4225] focus:outline-[var(--pri-color)] focus:ring-0 focus:ring-offset-0"
+                            fullWidth
+                            onClick={() => setPreferredMethod('email')}
+                          >
+                            <span className="rounded-md bg-white p-2 dark:bg-black">
+                              <MdOutlineMarkEmailUnread />
+                            </span>
+                            <span>To Email</span>
+                          </Button>
+                        </li>
+                        <li className="hidden">
+                          <Button
+                            intent="none"
+                            className="justify-start gap-3 bg-[#beec4225] focus:outline-[var(--pri-color)] focus:ring-0 focus:ring-offset-0"
+                            fullWidth
+                          >
+                            <span className="rounded-md bg-white p-2 dark:bg-black">
+                              <MdPhoneEnabled />
+                            </span>
+                            <span>To Phone Number</span>
+                          </Button>
+                        </li>
+                        <li className="hidden">
+                          <Button
+                            intent="none"
+                            className="justify-start gap-3 bg-[#beec4225] focus:outline-[var(--pri-color)] focus:ring-0 focus:ring-offset-0"
+                            fullWidth
+                          >
+                            <span className="rounded-md bg-white p-2 dark:bg-black">
+                              <FaMoneyBill />
+                            </span>
+                            <span>To Mobile Money (Momo) Account</span>
+                          </Button>
+                        </li>
+                        <li className="hidden">
+                          <Button
+                            intent="none"
+                            className="justify-start gap-3 bg-[#beec4225] focus:outline-[var(--pri-color)] focus:ring-0 focus:ring-offset-0"
+                            fullWidth
+                          >
+                            <span className="rounded-md bg-white p-2 dark:bg-black">
+                              <FaPhoneVolume />
+                            </span>
+                            <span>To Phone Number (Airtime)</span>
+                          </Button>
+                        </li>
+                        <li className="hidden">
+                          <Button
+                            intent="none"
+                            className="justify-start gap-3 bg-[#beec4225] focus:outline-[var(--pri-color)] focus:ring-0 focus:ring-offset-0"
+                            fullWidth
+                          >
+                            <span className="rounded-md bg-white p-2 dark:bg-black">
+                              <MdCardGiftcard />
+                            </span>
+                            <span>To Email (Giftcards)</span>
+                          </Button>
+                        </li>
+                      </ul>
+                    </>
+                  )}
+                  {preferredMethod === 'wallet' && <WalletTransfer closeMethod={closeMethod} />}
+                  {preferredMethod === 'bank' && <BankTransfer closeMethod={closeMethod} />}
+                  {preferredMethod === 'email' && <EmailTransfer closeMethod={closeMethod} />}
                 </Dialog.Panel>
               </Transition.Child>
             </div>

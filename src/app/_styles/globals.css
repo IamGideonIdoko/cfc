@@ -10,6 +10,10 @@
   --background: white;
 }
 
+*:focus {
+  outline-color: #beec42;
+}
+
 @media (prefers-color-scheme: dark) {
   html.dark {
     --foreground: white;
@@ -26,4 +30,16 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.form-err-msg {
+  color: #a94442;
+  border-width: 1px;
+  border-style: solid;
+  margin-top: 8px;
+  padding: 10px;
+  border-color: #ebccd1;
+  background-color: #f2dede;
+  border-radius: 6px;
+  font-size: 12px;
 }

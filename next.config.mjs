@@ -16,6 +16,21 @@ const nextConfig = {
       },
     ],
   },
+  headers: () => {
+    return new Promise((resolve) =>
+      resolve([
+        {
+          source: '/(.*)',
+          headers: [
+            {
+              key: 'Access-Control-Allow-Origin',
+              value: process.env.NEXTAUTH_URL ?? '',
+            },
+          ],
+        },
+      ]),
+    );
+  },
 };
 
 export default nextConfig;

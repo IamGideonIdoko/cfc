@@ -8,7 +8,7 @@ import { twMerge } from 'tailwind-merge';
 const buttonStyles = (className?: string) =>
   cva(
     twMerge(
-      `flex items-center justify-center rounded-md p-4 py-3 font-medium focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-white disabled:pointer-events-none disabled:opacity-60 ${
+      `flex items-center justify-center rounded-md p-4 py-3 font-medium focus:ring-1 focus:ring-[var(--pri-color)] focus:ring-offset-0 focus:ring-offset-white disabled:pointer-events-none disabled:opacity-60 ${
         className ?? ''
       }`,
     ),

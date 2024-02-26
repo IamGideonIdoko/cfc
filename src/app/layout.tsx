@@ -4,6 +4,7 @@ import './_styles/globals.css';
 import { ThemeProvider, SessionProvider } from '@/app/_providers';
 import { getServerAuthSession } from '@/server/auth';
 import MainLayout from './_layouts/MainLayout';
+import { Toaster } from 'react-hot-toast';
 
 const workSans = Work_Sans({ subsets: ['latin'] });
 
@@ -24,6 +25,15 @@ export default async function RootLayout({
         <SessionProvider session={session}>
           <ThemeProvider attribute="class">
             <MainLayout>{children}</MainLayout>
+            <Toaster
+              position="top-center"
+              toastOptions={{
+                style: {
+                  padding: '12px 20px',
+                },
+                duration: 4000,
+              }}
+            />
           </ThemeProvider>
         </SessionProvider>
       </body>

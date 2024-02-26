@@ -23,3 +23,54 @@ Content-Type: application/json
 {
   "subAccount": "40ecd76b-99c0-414f-9019-1c0bdbd3fe30"
 }
+
+
+# Initiate a Payment Request
+POST {{CHIMONEY_URL}}/payment/initiate
+X-API-KEY: {{CHIMONEY_KEY}}
+Content-Type: application/json
+
+{
+  "payerEmail": "iamgideonidoko@gmail.com",
+  "valueInUSD": 10,
+  "subAccount": "40ecd76b-99c0-414f-9019-1c0bdbd3fe30"
+
+}
+
+# Initiate a Payment Request
+POST {{CHIMONEY_URL}}/wallets/list
+X-API-KEY: {{CHIMONEY_KEY}}
+Content-Type: application/json
+
+{
+  "subAccount": "40ecd76b-99c0-414f-9019-1c0bdbd3fe30"
+}
+
+
+# Verify a Payment
+POST {{CHIMONEY_URL}}/payment/verify
+X-API-KEY: {{CHIMONEY_KEY}}
+Content-Type: application/json
+
+{
+  "id": "40ecd76b-99c0-414f-9019-1c0bdbd3fe30_10_1708944244334",
+  "subAccount": "40ecd76b-99c0-414f-9019-1c0bdbd3fe30"
+}
+
+
+# Get all Transactions by Account
+POST {{CHIMONEY_URL}}/accounts/transactions
+X-API-KEY: {{CHIMONEY_KEY}}
+Content-Type: application/json
+
+{
+  "subAccount": "40ecd76b-99c0-414f-9019-1c0bdbd3fe30"
+}
+
+
+# Get List of Supported Banks and Bank code
+GET {{CHIMONEY_URL}}/info/country-banks?countryCode=ng
+X-API-KEY: {{CHIMONEY_KEY}}
+Content-Type: application/json
+
+

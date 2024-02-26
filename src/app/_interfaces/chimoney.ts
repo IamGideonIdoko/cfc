@@ -8,7 +8,11 @@ export interface ErrorResponse {
   error: string;
 }
 
-export type ChimoneyResponse<T> = SuccessResponse<T> | ErrorResponse;
+export interface FailedResponse {
+  message: string;
+}
+
+export type ChimoneyResponse<T> = SuccessResponse<T> | ErrorResponse | FailedResponse;
 
 export interface SubAccountDetails {
   id: string;
