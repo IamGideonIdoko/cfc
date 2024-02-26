@@ -74,3 +74,13 @@ X-API-KEY: {{CHIMONEY_KEY}}
 Content-Type: application/json
 
 
+POST {{CHIMONEY_URL}}/wallets/transfer
+X-API-KEY: {{CHIMONEY_KEY}}
+Content-Type: application/json
+
+{
+  "subAccount": "40ecd76b-99c0-414f-9019-1c0bdbd3fe30",
+  "receiver": "a29f1244-ee00-40a9-a331-c7d01fa62df0",
+  "wallet": "chi",
+  "valueInUSD": 10
+}
