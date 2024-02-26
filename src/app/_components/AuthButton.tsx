@@ -44,7 +44,7 @@ const AuthButton = () => {
   if (pathname === '/' || (!session && pathname !== '/'))
     return (
       <Button
-        className="bg-black !text-white dark:bg-white dark:text-black"
+        className="bg-black !text-white dark:bg-white dark:!text-black"
         onClick={() =>
           session ? router.push('/dashboard') : void signIn('google', { callbackUrl: callbackUrl ?? undefined })
         }

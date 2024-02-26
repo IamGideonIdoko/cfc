@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --pri-color: #beec42;
   --sec-color: #9d9c89;
